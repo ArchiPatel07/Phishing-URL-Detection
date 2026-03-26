@@ -1,0 +1,114 @@
+#Name : Patel Archiben Timirbhai
+# Phishing URL Detection using Machine Learning
+print("This is to check URL is safe or not")
+import pandas as pd
+from sklearn.linear_model import LogisticRegression
+
+def extract_features(url):
+    features = []
+    
+    features.append(len(url))
+    features.append(1 if "@" in url else 0)
+    features.append(url.count("."))
+    features.append(1 if url.startswith("https") else 0)
+    features.append(url.count("-"))
+    suspicious_words = ["login", "verify", "update", "secure", "bank", "free"]
+    flag = 0
+
+    for word in suspicious_words:
+        if word in url.lower():
+            flag = 1
+            break
+    features.append(flag)
+    
+    return features
+
+def train_model():
+    data = {
+        "url": [
+            "https://www.youtube.com",
+            "https://www.google.com",
+            "https://www.amazon.in",
+            "https://github.com",
+            "https://stackoverflow.com",
+            "https://wikipedia.org",
+            "http://secure-login.com",
+            "http://verify-account.ru",
+            "http://update-paypal.com",
+            "http://free-money.xyz",
+            "http://login@secure.com",
+            "http://bank-secure-login.com"
+        ],
+        "label": [0,0,0,0,0,0, 1,1,1,1,1,1]  # 0 = Safe, 1 = Phishing
+    }
+
+    df = pd.DataFrame(data)
+
+    feature_data = []
+    
+
+    for url in df["url"]:
+        feature_data.append(extract_features(url))
+
+    X = pd.DataFrame(feature_data, columns=[
+        "length", "has_at", "dots", "https", "hyphen", "suspicious_word"
+    ])
+    y = df["label"]
+
+    model = LogisticRegression()
+    model.fit(X, y)
+
+    return model
+
+
+def predict_url(model, url):
+    
+    trusted_sites = [
+        "youtube.com",
+        "google.com",
+        "amazon.in",
+        "github.com",
+        "wikipedia.org",
+        "stackoverflow.com"
+    ]
+
+    for site in trusted_sites:
+        if site in url.lower():
+            return "Trusted Website (Safe URL)"
+    
+    features = extract_features(url)
+    test = pd.DataFrame([features], columns=[
+        "length", "has_at", "dots", "https", "hyphen", "suspicious_word"
+    ])
+    
+    prediction = model.predict(test)[0]
+
+
+    if prediction == 1:
+        return "Warning: This URL is likely a phishing attempt. Avoid entering sensitive information."
+    else:
+        return "This URL looks safe,but always be careful."
+
+
+def main():
+    print("=======================================")
+    print("   PHISHING URL DETECTOR (CLI PROJECT)")
+    print("=======================================")
+    
+    model = train_model()
+    
+    while True:
+        user_url = input("\nEnter URL (or type 'exit' to quit): ")
+        
+        if user_url.lower() == "exit":
+            print("Program closed.")
+            break
+        
+
+        result = predict_url(model, user_url)
+        print(result)
+
+
+
+if __name__ == "__main__":
+    main()
