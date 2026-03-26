@@ -1,59 +1,47 @@
-Name: Patel Archiben Timirbhai
-📌 Project Overview
-This project is a simple machine learning based system that checks whether a given URL is safe or a phishing link.
-Phishing is a type of cyber attack where fake websites are created to trick users into entering sensitive information like passwords, OTPs, or bank details.
-The main idea of this project is to analyze the structure of a URL and predict whether it is legitimate or suspicious. The program runs completely in the command line, so it does not require any graphical interface.
-⚙️ Features
-Detects phishing and safe URLs
-Uses Machine Learning (Logistic Regression)
-Extracts useful features from URLs
-Includes trusted website checking (like YouTube, Google, etc.)
-Takes real-time user input
-Runs fully in terminal (CLI based)
-🛠️ Technologies Used
-Python
-pandas
-scikit-learn
-📂 Project Structure
-project-folder/
-│
-├── phishing_detector.py
-└── README.md
-💻 Setup Instructions
-First, make sure Python is installed on your system. You can check it by running:
-python --version
-Next, install the required libraries:
-pip install pandas scikit-learn
-After that, save the Python code file as:
-phishing_detector.py
-▶️ How to Run the Project
-Open the terminal or command prompt and navigate to your project folder:
-cd project-folder
-Then run the program:
-python phishing_detector.py
-🧪 How to Use
-After running the program, it will ask you to enter a URL
-Enter any website link you want to check
-The system will analyze it and display whether it is safe or phishing
-To exit the program, type:
-exit
-📌 Example Output
-Enter URL: https://www.youtube.com⁠�
-Checking URL...
-Trusted Website (Safe URL)
-Enter URL: http://free-money.xyz⁠�
-Checking URL...
-Warning: This URL is likely a phishing attempt. Avoid entering sensitive information.
-⚠️ Limitations
-Dataset used is small and manually created
-Model accuracy is limited
-Only basic URL features are analyzed
-Cannot detect advanced phishing attacks
-🚀 Future Improvements
-Use a larger real-world dataset
-Apply advanced machine learning models
-Add more detection features
-Create a web-based version
-Improve prediction accuracy
-📖 Notes
-This project is created for learning purposes to understand how phishing detection works using basic machine learning and Python programming concepts like functions, loops, and conditions.
+ ***Phishing URL Detection***
+
+**About This Project**
+This project is all about detecting phishing websites using machine learning. Basically, you enter a URL, and it tells you if it’s safe or potentially harmful. I built it to help people avoid fake websites and online scams. It includes a trained model, some Python scripts, and a simple web interface, so anyone can try it out.
+**Features**
+- Check if a URL is safe or a phishing attempt.
+- Easy web interface to input URLs and get results instantly.
+- Python scripts for training and feature extraction.
+- Can run on your computer using just Python — no fancy setup needed.
+**How The Project Is Organized**
+The project has the following structure:
+- README.md – This file
+-  Phishing URL Detection.ipynb – Notebook showing data analysis and model training
+- app.py – Main Python script to run the detection app
+- feature.py – Code to extract features from URLs
+- phishing.csv – Dataset used for training/testing
+- requirements.txt – Python packages needed
+- templates/ – HTML files for the web app
+- static/ – CSS & JS files for the web app
+- Procfile – Deployment file (for Heroku, optional)
+**What You Need**
+- Python 3.8 or higher
+- pip (Python package manager)
+**How To Run It**
+1. Clone the repository
+Open a terminal and run:
+git clone https://github.com/ArchiPatel07/Phishing-URL-Detection
+cd Phishing-URL-Detection
+2. Install the dependencies
+pip install -r requirements.txt
+3. Run the application
+python app.py
+4. Open the web interface
+Go to http://127.0.0.1:5000/ in your browser. Enter a URL and click Check URL. The app will display whether the URL is Safe or Phishing.
+**Example**
+- Input: http://example.com/login → Output: Safe
+- Input: http://secure-bank-login.com → Output: Phishing
+**Project Report**
+A detailed project report is included as Project Report.docx, which explains:
+- What the project does and why it’s useful
+- The dataset and features used
+- How the model was trained and tested
+- Results and conclusions
+**Notes**
+Make sure all dependencies are installed before running.
+The project can be fully run from the command line — no extra GUI needed.
+The dataset is included in the repo, so everything you need is already here.
